@@ -105,7 +105,7 @@ USE_TZ = True
 # 3. Yahan saari Static File settings theek kardi hain
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') # Railway ko yahan files milengi
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'frontend', 'static')]
 
 
 RAZORPAY_KEY_ID = "rzp_test_Sy5GCNmQyyzAKR"
