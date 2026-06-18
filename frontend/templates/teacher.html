@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Document</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/teacher.css' %}">
+</head>
+<body>
+    <div class="course-container">
+
+        {% for course in courses %}
+        
+        <div class="course-box">
+
+    <img src="{{ course.course_image }}">
+
+    <h2>
+            <i class="fa-solid fa-book-open"></i>
+        {{ course.course_name }}
+    </h2>
+
+    <p>{{ course.description }}</p>
+
+    <h3>₹{{ course.price }}</h3>
+
+    {% if course.id in purchased_ids %}
+
+        <a href="{% url 'course_access' course.id %}">
+            <button class="open-btn">
+            <i class="fa-solid fa-play"></i>
+                Open Course
+            </button>
+        </a>
+
+        {% else %}
+        
+        <a href="{% url 'payment2' course.id %}">
+            <button class="buy-btn">
+                <i class="fa-solid fa-cart-shopping"></i>
+                Buy Course
+            </button>
+        </a>
+        
+        {% endif %}
+        
+    </div>
+    
+    {% endfor %}
+</div>
+</body>
+</html>

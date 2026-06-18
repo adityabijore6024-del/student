@@ -1,0 +1,179 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>{{ test.title }}</title>
+
+{% load static %}
+
+<link rel="stylesheet"
+      href="{% static 'css/test_page.css' %}">
+
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+
+</head>
+
+<body>
+
+
+<div class="test-header">
+
+    <h1>
+        <i class="fa-solid fa-file-pen"></i>
+        {{ test.title }}
+    </h1>
+
+    <div class="timer-box">
+
+        <i class="fa-solid fa-clock"></i>
+
+        <span id="timer">
+            {{ test.duration_minutes }}:00
+        </span>
+
+    </div>
+
+</div>
+
+<form method="POST"
+      action="{% url 'submit_test' test.id %}">
+
+    {% csrf_token %}
+
+    <input type="hidden"
+           name="time_taken"
+           id="time_taken">
+
+    {% for question in questions %}
+
+    <div class="question-card">
+
+        <div class="question-number">
+            Question {{ forloop.counter }}
+        </div>
+
+        <h3>
+            {{ question.question_text }}
+        </h3>
+
+        <p class="marks">
+            {{ question.marks }} Marks
+        </p>
+
+        {% if question.question_type == "single" %}
+
+            {% for option in question.options.all %}
+
+            <label class="option-box">
+
+                <input type="radio"
+                       name="question_{{ question.id }}"
+                       value="{{ option.id }}">
+
+                {{ option.option_text }}
+
+            </label>
+
+            {% endfor %}
+
+        {% endif %}
+
+        {% if question.question_type == "integer" %}
+
+            <input type="number"
+                   class="integer-input"
+                   name="question_{{ question.id }}"
+                   placeholder="Enter Answer">
+
+        {% endif %}
+
+    </div>
+
+    {% endfor %}
+
+    <div class="submit-section">
+
+        <button type="submit"
+                class="submit-btn">
+
+            Submit Test
+
+        </button>
+
+    </div>
+
+</form>
+
+<script>
+
+    let totalSeconds =
+        {{ test.duration_minutes }} * 60;
+
+    let originalTime = totalSeconds;
+
+    const timer =
+        document.getElementById("timer");
+
+    const timeTakenInput =
+        document.getElementById("time_taken");
+
+    const form =
+        document.querySelector("form");
+
+    const interval =
+        setInterval(function () {
+
+            let minutes =
+                Math.floor(totalSeconds / 60);
+
+            let seconds =
+                totalSeconds % 60;
+
+            timer.innerHTML =
+                `${minutes}:${seconds
+                    .toString()
+                    .padStart(2, "0")}`;
+
+            totalSeconds--;
+
+            if (totalSeconds < 0) {
+
+                clearInterval(interval);
+
+                timeTakenInput.value =
+                    originalTime;
+
+                form.submit();
+
+            }
+
+        }, 1000);
+
+    form.addEventListener(
+
+        "submit",
+
+        function () {
+
+            timeTakenInput.value =
+                originalTime - totalSeconds;
+
+        }
+
+    );
+
+</script>
+
+
+</body>
+
+</html>

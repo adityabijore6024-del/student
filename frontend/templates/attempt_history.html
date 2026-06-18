@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+```
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>
+    My Test History
+</title>
+
+{% load static %}
+
+<link rel="stylesheet"
+      href="{% static 'css/attempt_history.css' %}">
+
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+```
+
+</head>
+
+<body>
+
+<div class="history-container">
+
+```
+<div class="header">
+
+    <h1>
+
+        <i class="fa-solid fa-chart-line"></i>
+
+        My Test History
+
+    </h1>
+
+    <p>
+        Track your performance and progress
+    </p>
+
+</div>
+
+<div class="history-grid">
+
+    {% for attempt in attempts %}
+
+    <div class="history-card">
+
+        <div class="card-top">
+
+            <h2>
+                {{ attempt.test.title }}
+            </h2>
+
+            <span class="score-badge">
+                {{ attempt.percentage }}%
+            </span>
+
+        </div>
+
+        <div class="details">
+
+            <p>
+                <i class="fa-solid fa-trophy"></i>
+                Score:
+                {{ attempt.score }}
+            </p>
+
+            <p>
+                <i class="fa-solid fa-circle-check"></i>
+                Correct:
+                {{ attempt.correct_answers }}
+            </p>
+
+            <p>
+                <i class="fa-solid fa-circle-xmark"></i>
+                Wrong:
+                {{ attempt.wrong_answers }}
+            </p>
+
+            <p>
+                <i class="fa-solid fa-forward"></i>
+                Skipped:
+                {{ attempt.skipped_answers }}
+            </p>
+
+            <p>
+                <i class="fa-solid fa-clock"></i>
+                Time:
+                {{ attempt.time_taken_seconds }} sec
+            </p>
+
+            <p>
+                <i class="fa-solid fa-calendar"></i>
+                {{ attempt.submitted_at }}
+            </p>
+
+        </div>
+
+        <a href="{% url 'result_page' attempt.id %}">
+
+            <button class="view-btn">
+
+                View Result
+
+            </button>
+
+        </a>
+
+    </div>
+
+    {% empty %}
+
+    <div class="empty-box">
+
+        <i class="fa-solid fa-file-circle-xmark"></i>
+
+        <h2>
+            No Test Attempts Yet
+        </h2>
+
+        <p>
+            Start a test to build your history.
+        </p>
+
+    </div>
+
+    {% endfor %}
+
+</div>
+```
+
+</div>
+
+</body>
+
+</html>

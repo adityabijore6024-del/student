@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Document</title>
+    {% load static %}
+<link rel="stylesheet" href="{% static 'css/payment2.css' %}">
+
+</head>
+<body>
+<div class="payment-container">
+
+    <div class="payment-card">
+
+        <img
+            src="{{ course.course_image }}"
+            alt="{{ course.course_name }}"
+        >
+
+        <h1>
+            {{ course.course_name }}
+        </h1>
+
+        <p class="desc">
+            {{ course.description }}
+        </p>
+
+        <div class="price-box">
+            ₹{{ course.price }}
+        </div>
+
+        <div class="features">
+
+            <p>✅ Full Course Access</p>
+
+            <p>✅ HD Video Lectures</p>
+
+            <p>✅ Lifetime Access</p>
+
+            <p>✅ Course Notes</p>
+
+            <p>✅ Assignment</p>
+
+            <p>✅ Test</p>
+
+        </div>
+
+        <button id="pay-btn">
+            💳 Pay Now
+        </button>
+
+    </div>
+
+</div>
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+<script>
+
+var options = {
+
+    key: "{{ razorpay_key }}",
+
+    amount: "{{ payment.amount }}",
+
+    currency: "INR",
+
+    order_id: "{{ payment.id }}",
+
+   handler: function(response){
+
+    window.location.href =
+    "/course-payment-success/{{ course.id }}/";
+}
+};
+
+var rzp = new Razorpay(options);
+
+document.getElementById(
+    "pay-btn"
+).onclick = function(e){
+
+    rzp.open();
+
+    e.preventDefault();
+}
+
+</script>
+    
+</body>
+</html>

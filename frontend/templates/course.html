@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Document</title>
+    {% load static %}
+<link rel="stylesheet" href="{% static 'css/course.css' %}">
+ </head>
+<body>
+<div class="course-container">
+
+    <div class="course-header">
+
+        <h1>
+            📚 {{ course.course_name }}
+        </h1>
+
+        <p>
+            Start your learning journey
+        </p>
+
+    </div>
+
+    <div class="lecture-grid">
+
+        <a href="YOUR_VIDEO_LINK" class="lecture-card">
+
+            <i class="fa-solid fa-circle-play"></i>
+
+            <h3>Video Lectures</h3>
+
+        </a>
+
+        <a href="YOUR_NOTES_LINK" class="lecture-card">
+
+            <i class="fa-solid fa-file-lines"></i>
+
+            <h3>Notes</h3>
+
+        </a>
+
+        <a href="YOUR_ASSIGNMENT_LINK" class="lecture-card">
+
+            <i class="fa-solid fa-pen-to-square"></i>
+
+            <h3>Assignment</h3>
+
+        </a>
+
+        <a href="{% url 'test_list' course.id %}" class="lecture-card">
+
+            <i class="fa-solid fa-clipboard-check"></i>
+
+            <h3>Test</h3>
+
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

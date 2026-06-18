@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI Doubt Solver</title>
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/doubt.css' %}">
+
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+<div class="doubt-container">
+
+    <div class="doubt-card">
+
+        <h1>
+            <i class="fa-solid fa-robot"></i>
+            AI Doubt Solver
+        </h1>
+
+        <form method="POST">
+
+    {% csrf_token %}
+
+    <label class="question-label">
+
+    <i class="fa-solid fa-circle-question"></i>
+
+    Enter Your Question
+
+    </label>
+    <textarea
+        name="question"
+        placeholder="Ask your doubt here..."
+        required
+    ></textarea>
+
+    <button type="submit">
+
+        <i class="fa-solid fa-paper-plane"></i>
+
+        Ask AI
+
+    </button>
+
+        </form>
+        {% if answer %}
+
+        <div class="answer-box">
+
+            <h3>
+                <i class="fa-solid fa-brain"></i>
+                AI Answer
+            </h3>
+
+            <p>{{ answer }}</p>
+
+        </div>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+</body>
+</html>

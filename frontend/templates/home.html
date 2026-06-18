@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Document</title>
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+<header>
+    <div class="profile-photo">
+        <img src="{{ profile.profile_image.url }}" alt="">
+    </div>
+    <form method="GET">
+<div class="search-bar">
+
+    <input
+    type="text"
+    name="q"
+    placeholder="Search Course "
+    >
+    
+    <button type="submit">
+            search
+    </button>
+</div>
+
+
+
+</form>
+<div class="right">
+
+    <a href="{% url 'profile' %}">Profile</a>
+    <a href="#teacher">Course</a>
+    <a href="#doubt">Ask Doubt</a>
+    <a href="{% url 'activity' %}">Activity</a>
+    <a href="{% url 'contact_support' %}">Contact & Support</a>
+
+</div>
+    <!-- Mobile Menu Button -->
+    <button class="menu-btn">
+        <i class="fa-solid fa-ellipsis-vertical"></i>
+    </button>
+</header>
+<main>
+    
+<div class="slider">
+
+    <div class="slides" id="slides">
+
+        {% for slide in slides %}
+
+        <div class="slide">
+            <a href="#{{ slide.section_id }}">
+                <img src="{{ slide.image_url }}">
+            </a>
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+    <button class="prev" onclick="prevSlide()">
+        &#10094;
+    </button>
+
+    <button class="next" onclick="nextSlide()">
+        &#10095;
+    </button>
+
+    <div class="dots" id="dots"></div>
+
+</div>
+
+<div class="doubt" id="doubt">
+
+    <a href="{% url 'doubt' %}">
+        <button>
+        <i class="fa-solid fa-robot"></i>
+            Ask Doubt
+        </button>
+    </a>
+</div>
+
+<div class="result">
+
+
+    {% if courses %}
+    
+    <h2>Search Results</h2>
+
+{% for course in courses %}
+
+<div class="course-box">
+
+    <img src="{{ course.course_image }}">
+
+    <h3>{{ course.course_name }}</h3>
+
+    <p>{{ course.description }}</p>
+    
+    <h4>₹{{ course.price }}</h4>
+    
+</div>
+
+{% endfor %}
+
+{% endif %}
+</div>
+
+
+<div class="teach" id="teacher">
+
+    
+    {% for data in teacher %}
+
+    <div class="teacher-box" id="{{data.name}}">
+        <div class="image">
+            <img src="{{data.image}}" alt="sorry image not availabe
+            ">
+        </div>
+        <div class="contain">
+            <h3>{{data.contain}} ram ram</h3>
+        </div>
+        <div class="btn">
+            <a href="{% url 'teacher_courses' data.id %}">
+            <button >
+                 <i class="fa-solid fa-graduation-cap"></i>
+                Explore Teacher
+            </button>
+            </a>
+        </div>
+
+
+    </div>
+    {% endfor %}
+    
+</div>
+
+</main>
+
+<script>
+
+const menuBtn =
+document.querySelector(".menu-btn");
+
+const menu =
+document.querySelector(".right");
+
+menuBtn.addEventListener("click", () => {
+    menu.classList.toggle("show");
+});
+
+
+const slides =
+document.getElementById("slides");
+
+const total =
+slides.children.length;
+
+const dotsContainer =
+document.getElementById("dots");
+
+let index = 0;
+
+/* CREATE DOTS */
+
+for(let i=0;i<total;i++){
+
+    let dot =
+    document.createElement("span");
+
+    dot.classList.add("dot");
+
+    if(i===0){
+        dot.classList.add("active");
+    }
+
+    dot.onclick = () =>{
+        index = i;
+        updateSlider();
+    }
+
+    dotsContainer.appendChild(dot);
+}
+
+function updateSlider(){
+
+    slides.style.transform =
+    `translateX(-${index * 100}%)`;
+
+    document
+    .querySelectorAll(".dot")
+    .forEach(dot =>
+        dot.classList.remove("active")
+    );
+
+    document
+    .querySelectorAll(".dot")
+    [index]
+    .classList.add("active");
+}
+
+function nextSlide(){
+
+    index++;
+
+    if(index >= total){
+        index = 0;
+    }
+
+    updateSlider();
+}
+
+function prevSlide(){
+
+    index--;
+
+    if(index < 0){
+        index = total - 1;
+    }
+
+    updateSlider();
+}
+
+/* AUTO PLAY */
+
+let autoSlide =
+setInterval(nextSlide,4000);
+
+/* PAUSE ON HOVER */
+
+document
+.querySelector(".slider")
+.addEventListener("mouseenter",()=>{
+
+    clearInterval(autoSlide);
+});
+
+document
+.querySelector(".slider")
+.addEventListener("mouseleave",()=>{
+
+    autoSlide =
+    setInterval(nextSlide,4000);
+});
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Document</title>
+    {% load static %}
+<link rel="stylesheet" href="{% static 'css/teacher.css' %}">
+</head>
+<body>
+    <div class="course-container">
+
+{% for course in courses %}
+
+<div class="course-box">
+
+    <img src="{{ course.course_image }}">
+
+    <h2>{{ course.course_name }}</h2>
+
+    <p>{{ course.description }}</p>
+
+    <h3>₹{{ course.price }}</h3>
+
+</div>
+
+{% endfor %}
+
+</div>
+</body>
+</html>

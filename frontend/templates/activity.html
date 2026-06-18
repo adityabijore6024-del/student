@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Document</title>
+    {% load static%}
+    <link rel="stylesheet" href="{% static 'css/activity.css'%}">
+</head> 
+<body>
+    <div class="dashboard">
+
+    <h1>
+        📊 My Learning Dashboard
+    </h1>
+
+    <div class="stats-grid">
+
+        <div class="stat-card">
+            <h2>{{ total_courses }}</h2>
+            <p>Courses Purchased</p>
+        </div>
+
+        <div class="stat-card">
+            <h2>₹{{ total_spent }}</h2>
+            <p>Total Investment</p>
+        </div>
+
+        {% if last_purchase %}
+
+        <div class="stat-card">
+            <h2>
+                {{ last_purchase.course.course_name }}
+            </h2>
+            <p>Last Purchased</p>
+        </div>
+
+        {% endif %}
+
+    </div>
+
+    <div class="activity-title">
+
+        <h2>
+            Recent Purchases
+        </h2>
+
+    </div>
+
+    <div class="course-grid">
+
+        {% for item in purchases %}
+
+        <div class="course-card">
+
+            <div class="badge">
+                Purchased
+            </div>
+
+            <img
+            src="{{ item.course.course_image }}"
+            alt="course">
+
+            <div class="content">
+
+                <h2>
+                    {{ item.course.course_name }}
+                </h2>
+
+                <p>
+                    {{ item.course.description }}
+                </p>
+
+                <div class="purchase-date">
+
+                    📅
+                    {{ item.purchased_at|date:"d M Y" }}
+
+                </div>
+
+                <a href="{% url 'course_access' item.course.id %}">
+
+                    <button>
+                        Open Course
+                    </button>
+
+                </a>
+
+            </div>
+
+        </div>
+
+        {% empty %}
+
+        <div class="empty-state">
+
+            <h2>
+                📚 No Courses Purchased Yet
+            </h2>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+</body>
+</html>

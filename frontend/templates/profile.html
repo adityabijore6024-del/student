@@ -1,0 +1,105 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+
+<link rel="stylesheet"
+href="{% static 'css/profile.css' %}">
+
+<title>Profile</title>
+
+</head>
+
+<body>
+
+<div class="profile-container">
+
+<form method="POST"
+enctype="multipart/form-data">
+
+{% csrf_token %}
+
+<div class="profile-card">
+
+<div class="profile-image">
+
+{% if profile.profile_image %} <img src="{{ profile.profile_image.url }}">
+{% else %} <img src="https://via.placeholder.com/150">
+{% endif %}
+
+<input
+type="file"
+name="profile_image">
+
+</div>
+
+<h2>{{ request.user.username }}</h2>
+
+<p>{{ request.user.email }}</p>
+
+<input
+type="text"
+name="phone"
+value="{{ profile.phone }}"
+placeholder="Phone Number">
+
+<input
+type="number"
+name="age"
+value="{{ profile.age }}"
+placeholder="Age">
+
+<select name="gender">
+
+<option value="Male">Male</option>
+
+<option value="Female">Female</option>
+
+<option value="Other">Other</option>
+
+</select>
+
+<input
+type="text"
+name="city"
+value="{{ profile.city }}"
+placeholder="City">
+
+<input
+type="text"
+name="instagram"
+value="{{ profile.instagram }}"
+placeholder="Instagram">
+
+<input
+type="text"
+name="github"
+value="{{ profile.github }}"
+placeholder="Github">
+
+<input
+type="text"
+name="hobbies"
+value="{{ profile.hobbies }}"
+placeholder="Hobbies">
+
+<textarea
+name="bio"
+placeholder="Bio">{{ profile.bio }}</textarea>
+
+<button type="submit">
+
+Update Profile
+
+</button>
+
+</div>
+
+</form>
+
+</div>
+
+</body>
+</html>

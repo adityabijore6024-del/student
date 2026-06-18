@@ -1,0 +1,221 @@
+body{
+
+    background:
+    linear-gradient(
+        135deg,
+        #eef2ff,
+        #f8fafc
+    );
+
+    font-family:Arial,sans-serif;
+
+    padding:40px;
+}
+
+.dashboard{
+
+    max-width:1400px;
+
+    margin:auto;
+}
+
+.dashboard h1{
+
+    text-align:center;
+
+    font-size:45px;
+
+    color:#4f46e5;
+
+    margin-bottom:40px;
+}
+
+.stats-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(250px,1fr));
+
+    gap:25px;
+
+    margin-bottom:60px;
+}
+
+.stat-card{
+
+    background:
+    rgba(255,255,255,.7);
+
+    backdrop-filter:blur(10px);
+
+    padding:30px;
+
+    border-radius:25px;
+
+    text-align:center;
+
+    box-shadow:
+    0 10px 25px rgba(0,0,0,.08);
+
+    transition:.4s;
+}
+
+.stat-card:hover{
+
+    transform:
+    translateY(-10px);
+
+    box-shadow:
+    0 20px 40px rgba(79,70,229,.15);
+}
+
+.stat-card h2{
+
+    color:#4f46e5;
+
+    margin-bottom:10px;
+}
+
+.activity-title{
+
+    margin-bottom:25px;
+}
+
+.activity-title h2{
+
+    color:#333;
+}
+
+.course-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(330px,1fr));
+
+    gap:30px;
+}
+
+.course-card{
+
+    background:white;
+
+    border-radius:25px;
+
+    overflow:hidden;
+
+    position:relative;
+
+    box-shadow:
+    0 10px 25px rgba(0,0,0,.08);
+
+    transition:.4s;
+}
+
+.course-card:hover{
+
+    transform:
+    translateY(-12px);
+
+    box-shadow:
+    0 20px 40px rgba(79,70,229,.18);
+}
+
+.course-card img{
+
+    width:100%;
+
+    height:220px;
+
+    object-fit:cover;
+}
+
+.content{
+
+    padding:20px;
+}
+
+.content h2{
+
+    margin-bottom:10px;
+}
+
+.content p{
+
+    color:#666;
+
+    line-height:1.6;
+
+    margin-bottom:15px;
+}
+
+.purchase-date{
+
+    color:#888;
+
+    margin-bottom:15px;
+}
+
+.badge{
+
+    position:absolute;
+
+    top:15px;
+
+    right:15px;
+
+    background:#10b981;
+
+    color:white;
+
+    padding:8px 14px;
+
+    border-radius:50px;
+
+    font-size:12px;
+
+    font-weight:bold;
+}
+
+.content button{
+
+    width:100%;
+
+    height:50px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:
+    linear-gradient(
+        135deg,
+        #4f46e5,
+        #7c3aed
+    );
+
+    color:white;
+
+    font-size:16px;
+
+    cursor:pointer;
+
+    transition:.3s;
+}
+
+.content button:hover{
+
+    transform:scale(1.03);
+}
+
+.empty-state{
+
+    text-align:center;
+
+    padding:60px;
+
+    background:white;
+
+    border-radius:20px;
+}

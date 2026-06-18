@@ -1,0 +1,194 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+
+    min-height:100vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    background:
+    linear-gradient(
+        135deg,
+        #f5f7ff,
+        #eef2ff
+    );
+
+    font-family:Arial,sans-serif;
+}
+
+.payment-container{
+
+    width:100%;
+
+    display:flex;
+
+    justify-content:center;
+
+    padding:40px;
+}
+
+.payment-card{
+
+    width:420px;
+
+    background:white;
+
+    border-radius:25px;
+
+    overflow:hidden;
+
+    text-align:center;
+
+    box-shadow:
+    0 15px 40px rgba(0,0,0,.12);
+
+    transition:.4s;
+}
+
+.payment-card:hover{
+
+    transform:
+    translateY(-10px);
+
+    box-shadow:
+    0 25px 60px rgba(0,0,0,.18);
+}
+
+.payment-card img{
+
+    width:100%;
+
+    height:250px;
+
+    object-fit:cover;
+
+    transition:.5s;
+}
+
+.payment-card:hover img{
+
+    transform:scale(1.05);
+}
+
+.payment-card h1{
+
+    padding:20px 15px 10px;
+
+    color:#222;
+
+    font-size:30px;
+}
+
+.desc{
+
+    padding:0 25px;
+
+    color:#666;
+
+    line-height:1.7;
+}
+
+.price-box{
+
+    margin:25px auto;
+
+    width:180px;
+
+    height:60px;
+
+    border-radius:50px;
+
+    background:
+    linear-gradient(
+        135deg,
+        #4f46e5,
+        #7c3aed
+    );
+
+    color:white;
+
+    font-size:30px;
+
+    font-weight:bold;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    box-shadow:
+    0 10px 25px rgba(79,70,229,.35);
+}
+
+.features{
+
+    text-align:left;
+
+    padding:0 40px;
+
+    line-height:2;
+}
+
+.features p{
+
+    color:#444;
+
+    font-size:15px;
+}
+
+#pay-btn{
+
+    width:85%;
+
+    height:55px;
+
+    border:none;
+
+    border-radius:50px;
+
+    margin:25px 0;
+
+    background:
+    linear-gradient(
+        135deg,
+        #10b981,
+        #059669
+    );
+
+    color:white;
+
+    font-size:18px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+    box-shadow:
+    0 10px 25px rgba(16,185,129,.35);
+}
+
+#pay-btn:hover{
+
+    transform:
+    translateY(-4px)
+    scale(1.03);
+
+    box-shadow:
+    0 18px 35px rgba(16,185,129,.45);
+}
+
+#pay-btn:active{
+
+    transform:scale(.97);
+}

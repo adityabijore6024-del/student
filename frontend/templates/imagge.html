@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+.slider{
+    width:800px;
+    height:400px;
+    overflow:hidden;
+    margin:50px auto;
+}
+
+.slides{
+    display:flex;
+    transition:transform 0.8s ease;
+}
+
+.slides img{
+    width:800px;
+    height:400px;
+    object-fit:cover;
+}
+</style>
+</head>
+<body>
+
+<div class="slider">
+    <div class="slides" id="slides">
+        <img src="https://picsum.photos/id/1015/800/400" alt="">
+        <img src="https://picsum.photos/id/1016/800/400" alt="">
+        <img src="https://picsum.photos/id/1018/800/400" alt="">
+        <img src="https://picsum.photos/id/1020/800/400" alt="">
+        <!-- First image duplicate -->
+        <img src="https://picsum.photos/id/1015/800/400" alt="">
+
+    </div
+</div>
+
+<script>
+
+const slides = document.getElementById("slides");
+
+let index = 0;
+const total = 4;
+
+setInterval(() => {
+
+    index++;
+
+    slides.style.transition = "0.8s ease";
+    slides.style.transform =
+    `translateX(-${index * 800}px)`;
+
+    if(index === total){
+
+        setTimeout(() => {
+
+            slides.style.transition = "none";
+
+            slides.style.transform =
+            "translateX(0)";
+
+            index = 0;
+
+        },800);
+
+    }
+
+},3000);
+
+</script>
+
+</body>
+</html>

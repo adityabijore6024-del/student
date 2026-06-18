@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>
+        Tests - {{ course.course_name }}
+    </title>
+
+    {% load static %}
+
+    <link rel="stylesheet"
+          href="{% static 'css/test_list.css' %}">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="page-header">
+
+    <h1>
+        <i class="fa-solid fa-file-pen"></i>
+        {{ course.course_name }} Tests
+    </h1>
+
+    <p>
+        Practice, Improve & Track Your Progress
+    </p>
+
+</div>
+
+<div class="test-container">
+
+{% for test in tests %}
+
+<div class="test-card">
+
+    <div class="test-top">
+
+        <span class="badge">
+            Unlimited Attempts
+        </span>
+
+    </div>
+
+    <h2>
+
+        <i class="fa-solid fa-graduation-cap"></i>
+
+        {{ test.title }}
+
+    </h2>
+
+    <p>
+
+        {{ test.description }}
+
+    </p>
+
+    <div class="test-info">
+
+        <div>
+
+            <i class="fa-regular fa-clock"></i>
+
+            {{ test.duration_minutes }}
+            Minutes
+
+        </div>
+
+        <div>
+
+            <i class="fa-solid fa-star"></i>
+
+            {{ test.total_marks }}
+            Marks
+
+        </div>
+
+    </div>
+
+    <a href="{% url 'start_test' test.id %}">
+
+        <button class="start-btn">
+
+            Start Test
+
+        </button>
+
+    </a>
+
+</div>
+
+{% empty %}
+
+<div class="empty-box">
+
+    <i class="fa-solid fa-circle-exclamation"></i>
+
+    <h2>
+        No Tests Available
+    </h2>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+</body>
+</html>

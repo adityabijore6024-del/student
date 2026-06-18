@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<title>
+    Test Result
+</title>
+
+{% load static %}
+
+<link rel="stylesheet"
+      href="{% static 'css/result.css' %}">
+
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+
+</head>
+
+<body>
+
+<div class="result-container">
+
+
+<div class="result-card">
+
+    <div class="top-section">
+
+        <i class="fa-solid fa-trophy trophy"></i>
+
+        <h1>
+            Test Completed
+        </h1>
+
+        <p>
+            Here is your performance report
+        </p>
+
+    </div>
+
+    <div class="score-circle">
+
+        <span>
+            {{ attempt.percentage }}%
+        </span>
+
+    </div>
+
+    <div class="score-box">
+
+        <h2>
+            Score
+        </h2>
+
+        <h1>
+            {{ attempt.score }}
+        </h1>
+
+    </div>
+
+    <div class="stats-grid">
+
+        <div class="stat-card correct">
+
+            <i class="fa-solid fa-circle-check"></i>
+
+            <h3>
+                {{ attempt.correct_answers }}
+            </h3>
+
+            <p>
+                Correct
+            </p>
+
+        </div>
+
+        <div class="stat-card wrong">
+
+            <i class="fa-solid fa-circle-xmark"></i>
+
+            <h3>
+                {{ attempt.wrong_answers }}
+            </h3>
+
+            <p>
+                Wrong
+            </p>
+
+        </div>
+
+        <div class="stat-card skipped">
+
+            <i class="fa-solid fa-forward"></i>
+
+            <h3>
+                {{ attempt.skipped_answers }}
+            </h3>
+
+            <p>
+                Skipped
+            </p>
+
+        </div>
+
+        <div class="stat-card time">
+
+            <i class="fa-solid fa-clock"></i>
+
+            <h3>
+                {{ attempt.time_taken_seconds }}
+            </h3>
+
+            <p>
+                Seconds
+            </p>
+
+        </div>
+
+    </div>
+
+    <div class="performance">
+
+        {% if attempt.percentage >= 80 %}
+
+            <span class="excellent">
+                Excellent Performance 🚀
+            </span>
+
+        {% elif attempt.percentage >= 60 %}
+
+            <span class="good">
+                Good Performance 👍
+            </span>
+
+        {% else %}
+
+            <span class="average">
+                Keep Practicing 📚
+            </span>
+
+        {% endif %}
+
+    </div>
+
+    <div class="buttons">
+
+        <a href="{% url 'start_test' attempt.test.id %}">
+
+            <button class="retake-btn">
+
+                Retake Test
+
+            </button>
+
+        </a>
+
+        <a href="{% url 'home' %}">
+
+            <button class="home-btn">
+
+                Back To Home
+
+            </button>
+
+        </a>
+
+    </div>
+
+</div>
+
+
+</div>
+
+</body>
+
+</html>
